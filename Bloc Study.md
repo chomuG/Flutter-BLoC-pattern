@@ -50,7 +50,7 @@
 
    
 
-  - 복잡한 계층구조를 가지고 있는 앱을 만든다면 멀리 떨어진 위젯끼리의 통신이 잦아지면 코드가 점점 복잡해질 가능성이 크다.
+  - 복잡한 계층구조를 가지고 있는 앱을 만들었을 때 멀리 떨어진 위젯끼리의 통신이 잦아지면 코드가 점점 복잡해질 가능성이 크다.
 
   
 
@@ -143,7 +143,7 @@
 
 > 모든 Bloc은 core bloc package를 extend해 주어야 한다.
 >
-> 위 코드는 bloc을 event로 바꾸는 코드이다. 
+> CounterBloc은 CounterEvent를 int(state)로 변환하는 역할을 한다.
 
 
 
@@ -347,7 +347,7 @@
 
 
 
-#### 6. MuiltiBlocListener
+#### 6. RepositoryProvider
 
 - child에게 repository를 제공하는 위젯이다.
 
@@ -500,6 +500,35 @@
 
 
 
+### Firebase Login Tutorial Tip
+
+Plugin을 바로 추가하고 빌드를 하면 AndroidX 문제 때문에 빌드가 되지 않을때가 있다.
+
+그럴때
+
+1.
+
+android/app/build.gradle 파일에 들어가서
+
+defaultConfig 안에 multiDexEnabled true를 넣어준다.
+
+![image-20191223171313939](C:\Users\Park\AppData\Roaming\Typora\typora-user-images\image-20191223171313939.png)
+
+
+
+2.
+
+android/gradle.properties 파일에 들어가서
+
+```properties
+android.enableJetifier=true
+android.useAndroidX=true
+```
+
+를 추가해준다!
+
+
+
 ## Several Recipes
 
 - Show Snackbar
@@ -551,7 +580,7 @@
 >
 > state에 변경이 있으면 Navigator.of(context).pushNamed('/pageB'); Navigator로 새 경로를 push한다.
 
-#### 
+
 
 > 페이지를 렌더링하는것과 경로를 push하는 것의 차이: 
 >
@@ -582,7 +611,7 @@
 
 #### Route Access
 
-- 이 예제에서는 BlocProvider를 사용하여 여러 경로에 걸쳐 bloc에 access 하는데 사용한다. 
+- 이 예제에서는 BlocProvider를 여러 경로에 걸쳐 bloc에 access 하는데 사용한다. 
 - 새로운 경로가 push되면 이전에 참조되었던 bloc이 더이상 없는 다른 BuildContext를 갖게된다. 
 - 결과적으로, 새로운 경로를 별도의 BlocProvider로 감싸줄 필요가 있다.
 
@@ -597,6 +626,8 @@
 ----
 
 > 위의 Local Access예제와 비슷하지만, Homepage에서 counterpage로 bloc instance를 넘겨주기 위해 BlocProvider.value 로 감싸주는것을 볼 수 있다.
+
+> 여러 페이지에서 Bloc instance를 사용해야 할 때 사용된다.
 
 
 

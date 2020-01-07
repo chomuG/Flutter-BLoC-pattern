@@ -1,0 +1,511 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<title>Bloc Study</title><link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 40px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 2; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px !important; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-diagram-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  html.blink-to-pdf { font-size: 13px; }
+  .typora-export #write { padding-left: 32px; padding-right: 32px; padding-bottom: 0px; break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.md-inline-math .MathJax_SVG .noError { display: none !important; }
+.html-for-mac .inline-math-svg .MathJax_SVG { vertical-align: 0.2px; }
+.md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: hidden; display: block !important; }
+.MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display { width: auto; margin: inherit; display: inline-block !important; }
+.MathJax_SVG .MJX-monospace { font-family: var(--monospace); }
+.MathJax_SVG .MJX-sans-serif { font-family: sans-serif; }
+.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; zoom: 90%; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; }
+.MathJax_SVG * { transition: none 0s ease 0s; }
+.MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; margin-top: 0px !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="mermaid"] svg, [lang="flow"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+svg[id^="mermaidChart"] { line-height: 1em; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+mark .md-meta { color: rgb(0, 0, 0); opacity: 0.3 !important; }
+
+
+:root {
+    --side-bar-bg-color: #fafafa;
+    --control-text-color: #777;
+}
+
+@include-when-export url(https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
+
+html {
+    font-size: 16px;
+}
+
+body {
+    font-family: "Open Sans","Clear Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+    color: rgb(51, 51, 51);
+    line-height: 1.6;
+}
+
+#write {
+    max-width: 860px;
+  	margin: 0 auto;
+  	padding: 30px;
+    padding-bottom: 100px;
+}
+#write > ul:first-child,
+#write > ol:first-child{
+    margin-top: 30px;
+}
+
+a {
+    color: #4183C4;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    cursor: text;
+}
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    text-decoration: none;
+}
+h1 tt,
+h1 code {
+    font-size: inherit;
+}
+h2 tt,
+h2 code {
+    font-size: inherit;
+}
+h3 tt,
+h3 code {
+    font-size: inherit;
+}
+h4 tt,
+h4 code {
+    font-size: inherit;
+}
+h5 tt,
+h5 code {
+    font-size: inherit;
+}
+h6 tt,
+h6 code {
+    font-size: inherit;
+}
+h1 {
+    padding-bottom: .3em;
+    font-size: 2.25em;
+    line-height: 1.2;
+    border-bottom: 1px solid #eee;
+}
+h2 {
+   padding-bottom: .3em;
+    font-size: 1.75em;
+    line-height: 1.225;
+    border-bottom: 1px solid #eee;
+}
+h3 {
+    font-size: 1.5em;
+    line-height: 1.43;
+}
+h4 {
+    font-size: 1.25em;
+}
+h5 {
+    font-size: 1em;
+}
+h6 {
+   font-size: 1em;
+    color: #777;
+}
+p,
+blockquote,
+ul,
+ol,
+dl,
+table{
+    margin: 0.8em 0;
+}
+li>ol,
+li>ul {
+    margin: 0 0;
+}
+hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+li p.first {
+    display: inline-block;
+}
+ul,
+ol {
+    padding-left: 30px;
+}
+ul:first-child,
+ol:first-child {
+    margin-top: 0;
+}
+ul:last-child,
+ol:last-child {
+    margin-bottom: 0;
+}
+blockquote {
+    border-left: 4px solid #dfe2e5;
+    padding: 0 15px;
+    color: #777777;
+}
+blockquote blockquote {
+    padding-right: 0;
+}
+table {
+    padding: 0;
+    word-break: initial;
+}
+table tr {
+    border-top: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 0;
+}
+table tr:nth-child(2n),
+thead {
+    background-color: #f8f8f8;
+}
+table tr th {
+    font-weight: bold;
+    border: 1px solid #dfe2e5;
+    border-bottom: 0;
+    margin: 0;
+    padding: 6px 13px;
+}
+table tr td {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 6px 13px;
+}
+table tr th:first-child,
+table tr td:first-child {
+    margin-top: 0;
+}
+table tr th:last-child,
+table tr td:last-child {
+    margin-bottom: 0;
+}
+
+.CodeMirror-lines {
+    padding-left: 4px;
+}
+
+.code-tooltip {
+    box-shadow: 0 1px 1px 0 rgba(0,28,36,.3);
+    border-top: 1px solid #eef2f2;
+}
+
+.md-fences,
+code,
+tt {
+    border: 1px solid #e7eaed;
+    background-color: #f8f8f8;
+    border-radius: 3px;
+    padding: 0;
+    padding: 2px 4px 0px 4px;
+    font-size: 0.9em;
+}
+
+code {
+    background-color: #f3f4f4;
+    padding: 0 2px 0 2px;
+}
+
+.md-fences {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+}
+
+
+.md-task-list-item > input {
+  margin-left: -1.3em;
+}
+
+@media print {
+    html {
+        font-size: 13px;
+    }
+    table,
+    pre {
+        page-break-inside: avoid;
+    }
+    pre {
+        word-wrap: break-word;
+    }
+}
+
+.md-fences {
+	background-color: #f8f8f8;
+}
+#write pre.md-meta-block {
+	padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border: 0;
+    border-radius: 3px;
+    color: #777777;
+    margin-top: 0 !important;
+}
+
+.mathjax-block>.code-tooltip {
+	bottom: .375rem;
+}
+
+.md-mathjax-midline {
+    background: #fafafa;
+}
+
+#write>h3.md-focus:before{
+	left: -1.5625rem;
+	top: .375rem;
+}
+#write>h4.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h5.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h6.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+.md-image>.md-meta {
+    /*border: 1px solid #ddd;*/
+    border-radius: 3px;
+    padding: 2px 0px 0px 4px;
+    font-size: 0.9em;
+    color: inherit;
+}
+
+.md-tag {
+    color: #a7a7a7;
+    opacity: 1;
+}
+
+.md-toc { 
+    margin-top:20px;
+    padding-bottom:20px;
+}
+
+.sidebar-tabs {
+    border-bottom: none;
+}
+
+#typora-quick-open {
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+
+#typora-quick-open-item {
+    background-color: #FAFAFA;
+    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+    border-style: solid;
+    border-width: 1px;
+}
+
+/** focus mode */
+.on-focus-mode blockquote {
+    border-left-color: rgba(85, 85, 85, 0.12);
+}
+
+header, .context-menu, .megamenu-content, footer{
+    font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state{
+    visibility: visible;
+}
+
+.mac-seamless-mode #typora-sidebar {
+    background-color: #fafafa;
+    background-color: var(--side-bar-bg-color);
+}
+
+.md-lang {
+    color: #b4654d;
+}
+
+.html-for-mac .context-menu {
+    --item-hover-bg-color: #E6F0FE;
+}
+
+#md-notification .btn {
+    border: 0;
+}
+
+.dropdown-menu .divider {
+    border-color: #e5e5e5;
+}
+
+.ty-preferences .window-content {
+    background-color: #fafafa;
+}
+
+.ty-preferences .nav-group-item.active {
+    color: white;
+    background: #999;
+}
+
+
+</style>
+</head>
+<body class='typora-export os-windows' >
+<div  id='write'  class = 'is-node'><h1><a name="bloc-study" class="md-header-anchor"></a><span>BLoC Study</span></h1><blockquote><p><span>referenced by </span><a href='https://bloclibrary.dev/#/' target='_blank' class='url'>https://bloclibrary.dev/#/</a></p></blockquote><p>&nbsp;</p><h2><a name="introduction" class="md-header-anchor"></a><span>Introduction</span></h2><h3><a name="개요" class="md-header-anchor"></a><span>개요</span></h3><blockquote><p><span>Bloc은 몇몇의 pub packages로 구성된다</span></p></blockquote><ul><li><span>bloc - bloc의 코어 library</span></li><li><span>flutter_bloc - bloc을 사용하기 위해 구축된 powerful flutter widget: (블럭이 미리 구현되어 있는 패키지)</span></li></ul><p>&nbsp;</p><h3><a name="설치" class="md-header-anchor"></a><span>설치</span></h3><blockquote><p><span>pubspec.yaml에 추가</span></p></blockquote><p><img src="https://lh3.googleusercontent.com/IlexfoBd-pL46DH7uWexophLaE4uAdE9eRRpva7fdqvx5XIdPMb_TIz_tt6syEumhlvU49-szy4kbZBScHG1E07q656pKgb-CydrH0w1xvYPiST73WN0LeXl8_HwaMET41Y_Bw8t" referrerpolicy="no-referrer" alt="img"></p><h3><a name="import" class="md-header-anchor"></a><span>Import</span></h3><p><img src="https://lh3.googleusercontent.com/ccb1N1NJ90gxOCMjQX6aOyh0F5pLrmS_wybuMfGNx51g-wt_o7AgZkrmxAPBGw3l8M34NhEPrvhfcN6GswtqDWqkTXfsQLRHUlBbhjGYvpuI0XwGlKwn-qwEyUtqBDef5TPBShX_" referrerpolicy="no-referrer" alt="img"></p><p>&nbsp;</p><p>&nbsp;</p><h2><a name="why-bloc" class="md-header-anchor"></a><span>Why Bloc?</span></h2><blockquote><p><span>Bloc makes it easy to separate presentation(UI) from business logic, making your code </span><em><span>fast</span></em><span>, </span><em><span>easy to test</span></em><span>, and </span><em><span>reusable</span></em><span>.</span></p></blockquote><p>&nbsp;</p><ul><li><span>왜 Bloc패턴을 사용해야 하는 것인가?</span></li></ul><p>&nbsp;</p><ul><li><span>그전에 Bloc은 무엇인가?</span>
+<strong><span>BLoC</span></strong><span>은 </span><strong><span>Business Logic Component</span></strong><span>의 줄임말로 </span><strong><span>Business logic</span></strong><span>과 </span><strong><span>UI</span></strong><span>의 분리가 특징인 </span><strong><span>Flutter</span></strong><span>의 </span><strong><span>state</span></strong><span>를 관리하는 디자인 패턴 중 하나이다.</span></li></ul><p>&nbsp;</p><ul><li><p><strong><span>state</span></strong><span> 관리! </span><strong><span>state</span></strong><span>란 사용자의 행동에 따라 </span><strong><span>변하는 데이터</span></strong><span>를 말한다. </span><strong><span>state</span></strong><span>관리는 왜 필요한 것인가? </span></p><ul><li><span>앱을 개발 할 때 간단한 state 변화는 setState를 통해 해결할 수 있다. 앱을 개발할 때 한 페이지 안에 state가 나눠져있는데 setState()를 호출하면 페이지 모든 data가 rebuild된다. </span></li></ul><p><span> </span></p><ul><li><span>복잡한 계층구조를 가지고 있는 앱을 만들었을 때 멀리 떨어진 위젯끼리의 통신이 잦아지면 코드가 점점 복잡해질 가능성이 크다.</span></li></ul><p>&nbsp;</p></li></ul><blockquote><p><span>	</span><span>BLoC은 Business logic과 UI의 분리가 가능하게 한다.(협업 면에서도 좋음) 정말 간단하게 말하면 UI별로 StreamBuilder를 적용한 것과 비슷하다고 생각하면 된다. 그래서 위와 같은상황이 올 때 setState 없이, 깔끔하게 UI별로 state관리를 할 수 있다. 그 한 곳에서 따로 해주기 때문에 코드가 꼬일 가능성이 적어지게 된다.</span>
+<span>결론적으로 더 쉽게 빠르고 효율적으로 반응하는 앱을 만들 수 있게 된다.</span></p></blockquote><p>&nbsp;</p><h2><a name="core-concepts" class="md-header-anchor"></a><span>Core Concepts</span></h2><blockquote><p><span>그럼 이제 Bloc 사용 방법을 이해하는데 중요한 몇 가지 핵심 개념을 알아보도록 하자. </span></p></blockquote><p>&nbsp;</p><h3><a name="bloc-core-concepts" class="md-header-anchor"></a><span>Bloc Core Concepts</span></h3><p>&nbsp;</p><h4><a name="1-events" class="md-header-anchor"></a><span>1. Events</span></h4><ul><li><span>Bloc의 input. 일반적으로 사용자의 버튼을 누르거나 페이지를 로드하거나 하는 상호작용의 응답으로 추가된다.</span></li></ul><blockquote><p><span>	</span><span>앱을 만들때는 사용자와 상호작용하는 방법을 정의해야 한다. 예를들어 counter app을 만든다고 하면, count를 올리거나 내리는 버튼을 사용자가 눌렀을 때 다음과 같이 증가와 감소 정보를 알려주는 이벤트를 정의해야 한다.</span></p></blockquote><p><img src="https://lh6.googleusercontent.com/Z1CL5oRAmHR6QQUyxXN_zbD0sTGIorcdOdLUOBZl6bUDt3yT8kmeC2V-A3oJZNyg1a3R64w5QNKg7JIfaWJOpjGakOBDg2jXdCQCH3fT8rZoMxsr0QsmhW2phCbEJq3zMfGvyc6o" referrerpolicy="no-referrer" alt="img"></p><p>&nbsp;</p><p>&nbsp;</p><h4><a name="2-states" class="md-header-anchor"></a><span>2. States</span></h4><ul><li><span>Bloc의 output이며 앱 state의 일부분을 나타낸다. 위에서 말했듯이 사용자의 상호작용에 따라 변하는 data들이다.</span></li></ul><blockquote><p><span>counter app에서 state는 카운터의 현재 값을 대표하는 정수이다.</span></p></blockquote><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><h4><a name="3-transitions" class="md-header-anchor"></a><span>3. Transitions </span></h4><ul><li><span>state의 변화를 뜻한다. transition은 current state, event, next state로 구성되어 있다.</span></li></ul><blockquote><p><span>사용자가 count 증가 버튼을 누르면 다음과 같은 transition을 볼 수 있다.</span></p></blockquote><p><img src="https://lh5.googleusercontent.com/hAq6QjwmmTuWeb0K041xEiiILE9CsLrZEBwoVl2b31B1qA7QPTjhYyegJI7AoAah0H9HVVBBx3Uh6lP4HGs4fLm6KhX7-4-7H_KvE3g5JD3z67LZlpmGSVPedZJKzqR-DpKsRGLK" referrerpolicy="no-referrer" alt="img"></p><p>&nbsp;</p><p>&nbsp;</p><h4><a name="4-stream" class="md-header-anchor"></a><span>4. Stream </span></h4><ul><li><span>비동기 data의 연속. 비동기 data가 물이라면 stream은 파이프다. 비동기인 data가 흘러올 때 마다 처리해 줄 수 있다. </span></li></ul><blockquote><p><span>async* 함수를 이용해 Stream을 만들 수 있다</span></p></blockquote><p>&nbsp;</p><p><img src="https://lh3.googleusercontent.com/KLXMYt6vb_ymqMRuQCDaEenBy7x6ObYvwC-FoYSEDZh0NaQpmPTDpCNd7Vc8wGCYRaBXWoMdDFoQ8ZkT1ezs39jaie-_tIqvTfnzhNz-dI2V0ztPnF8WH_upVlIpGOz66wBalFdZ" referrerpolicy="no-referrer" alt="img"></p><blockquote><p><span>yield : async* 함수에서 사용할수 있다. 열려있는 return이라고 생각하면 된다. 데이터가 있을때마다 계속 리턴할 수 있다.</span></p></blockquote><p>&nbsp;</p><p><img src="https://lh6.googleusercontent.com/3Gg4H6v6mfR7C-Ll0hh3ztSJh4ux2zSWlR9j1zJQf3d3C9oi14FLbyoMQuuHlUualDy579bNpZjczr3rKDwwbAjdL88cxkKsIG2VX939J5hZTLfZfo2VPFpcddBOXgFPSSvR9PlQ" referrerpolicy="no-referrer" alt="img"></p><blockquote><p><span>await : async함수에서 사용할수 있다. stream에서의 각 값을 기다리고 값이 더 이상 없다면 리턴해준다.</span></p></blockquote><p>&nbsp;</p><p><img src="https://lh5.googleusercontent.com/7mqbUWRV9RmLYV0pWabP42w3ejAVB2Anad7jVmBE9WMfqMKDoDiZ5wVisF0mfrwZJiHyTl23zLXCXGPyNBxdEtXa6n0ZftwQLvxGejPqj3YUIs2pKSAmNOu4QSFe5khryCpwwyGl" referrerpolicy="no-referrer" alt="img"></p><blockquote><p><span>두 함수를 동시에 사용하면 위 코드처럼 사용할 수 있다.</span></p></blockquote><p>&nbsp;</p><p>&nbsp;</p><h4><a name="5-blocs" class="md-header-anchor"></a><span>5. Blocs</span></h4><ul><li><span>Bloc은 들어오는 Stream을 나가는 Stream으로 바꿔주는 구성요소이다. </span></li></ul><p>&nbsp;</p><p><img src="https://lh5.googleusercontent.com/K-WzJIKGyhBmrp4lJ7ilF5BqsZEvsTbGDtQeNy6FRcdn6OxTpe8ESqrfhPbBGmJyvX6ka-lMfvr7mxcYISKgaA-2q5msKJsw_0dQCBTCBsBn6D3fYGl0M3d3JjMr0ELA0LWBtF_3" referrerpolicy="no-referrer" alt="img"></p><blockquote><p><span>모든 Bloc은 core bloc package를 extend해 주어야 한다.</span></p><p><span>CounterBloc은 CounterEvent를 int(state)로 변환하는 역할을 한다.</span></p></blockquote><p>&nbsp;</p><p><img src="https://lh6.googleusercontent.com/D8PHNMC0KDw_166MoGRSichNGUXdl2Xk2CdQc8KiwDdB5-NB9esckdJNjy2rrcHrnPHalYx-r6KoqqkT0eyNJa5EOriO3mqgPxePGI9oR0pa-_dQ3JXh7TmgZ9N2QLgl9Huz10fz" referrerpolicy="no-referrer" alt="img"></p><blockquote><p><span>모든 Bloc은 event를 받기 전 초기화를 해 주어야 한다.</span></p></blockquote><p>&nbsp;</p><p><img src="https://lh6.googleusercontent.com/O_44TeNm0OFIjA7GSpyXB3dYSFixE_ku38s6sy6_J10qwyiVdsHSPUqtrZ4zw86Lrn-otS9b6NArTExHcVJd2b6QUlmDu10q9VHicmu0JpwXaN0Hgb-zTlAPQ9vdQB8fByeYFuHM" referrerpolicy="no-referrer" alt="img"></p><blockquote><p><span>mapEventToState 함수가 꼭 있어야 한다.</span></p><p><span>=&gt; 들어오는 event를 새로운 state의 Stream으로 반환한다.</span></p></blockquote><p>&nbsp;</p><h5><a name="완전한-counter-bloc" class="md-header-anchor"></a><span>완전한 Counter Bloc </span></h5><hr /><p><img src="https://lh3.googleusercontent.com/xG4Wug-bu-bWiyOcWk1Y4mG_vyP1a5Y4YSoCKpR5T4FA1f7tT1sMwNjKL0PmEH41jnisviEFvXue-uK-lL_avQkIMs2R6AdVwrsKaRMa0Of2gAB3XPEOqvg_kCpoqfX9UquuLRJk" referrerpolicy="no-referrer" alt="img"></p><hr /><p>&nbsp;</p><p><img src="https://lh5.googleusercontent.com/cdX2geKcVUfttY2TmS9WNSHcV7R1CB3RXyRVZQK7oxC0YuANAdv1fi-MLE6OjyIhWC0X7NuFjcWuIjSIY-6gFXrLlN5Syspyl_HpngjScHdq7NoQwE8tsC-cSES0yyRQSZa_mQpK" referrerpolicy="no-referrer" alt="img"></p><blockquote><p><span>Add 함수가 꼭 있어야 한다 =&gt; event가 일어날 때 mapEventToState 함수를 호출하기 위함이다. </span></p><p><span>FIFO(먼저들어간것 먼저처리)형식으로 데이터를 처리한다.</span></p></blockquote><p>&nbsp;</p><p><img src="https://lh4.googleusercontent.com/s9l_yzNf5oMtXSliOTVGJi1e8o7MA0HQ9wah1Wnl-0LHTCxZE0yY9EqCfcEPl3jy_-3pa-odMPkSfWgvfYgmRSALcSUv40C6WO6KtEtXejdhuBilVaBPdBn29e2AA-BeWGL4Akw7" referrerpolicy="no-referrer" alt="img"></p><blockquote><p><span>Bloc state가 업데이트 되기 전에  호출된다.(bloc의 로깅과 분석)</span></p></blockquote><p>&nbsp;</p><p><img src="https://lh4.googleusercontent.com/XcXcLlzuJtkcgLj0B9MfqVFzn7JS5rBsku6jNeV1CXYvSFujG5_mSNjgZNFguiNldEc1xPvpJohCXJyNovVHHFwtk0YQb0BU-g1Z58AKJnj0n0XvrnvI_rCw0DxuvAFBkqaGIVia" referrerpolicy="no-referrer" alt="img"></p><blockquote><p><span>error handling(Bloc의 기능은 영향받지 않는다)</span></p></blockquote><p><span> </span></p><p>&nbsp;</p><h4><a name="6-blocdelegate" class="md-header-anchor"></a><span>6. BlocDelegate</span></h4><ul><li><span>모든 state변화(transition)와 error, 그리고 event 처리를 한 곳에서 처리할 수 있다. 개발자 로그를 남기거나 분석을 할 때 매우 유용하다. </span></li></ul><p>&nbsp;</p><p><img src="https://lh5.googleusercontent.com/cuKtqMCfrO9HyrF0pbKyNS3TNMTQUJ7uJY4MpOaQBK4rrXaoMgyqoL905UN49Akm68JirvjsjjMMggASPdA91uTEufgorddBJIX8ZlTEf9qg-Xg0zTyphmp5nngER_EdIXhyY5ew" referrerpolicy="no-referrer" alt="img"></p><blockquote><p><span>BlocDelegate를 extend하고 onTransition을 override 하기만 하면 된다.</span></p></blockquote><p>&nbsp;</p><p><img src="https://lh3.googleusercontent.com/RJPd8Z5atMGogujcbOFxdHFPCLAyRI-4A2G335qIMT6lxwzSTZ4QvNS0hHJHAbG7tq2rkRtxmGnu7V5RdV0doGN4Y_IxCXJe7gJcx5wnhnfoxZQ0qkjwY1Og1vQMN6RR6qC5XgTD" referrerpolicy="no-referrer" alt="img"></p><blockquote><p><span>Bloc에서 사용하기 위해서 main함수에 추가해준다.</span></p><p><span>BlocSupervisor는 BlocDelegate에 대한 모든 책임을 감독하는 싱글톤이다.</span></p></blockquote><p>&nbsp;</p><p>&nbsp;</p><h3><a name="flutter-bloc-core-concepts" class="md-header-anchor"></a><span>Flutter Bloc Core Concepts</span></h3><blockquote><p><span>bloc을 사용하기 위해 구축된 powerful flutter widget</span></p></blockquote><p>&nbsp;</p><h4><a name="1-blocbuilder" class="md-header-anchor"></a><span>1. BlocBuilder</span></h4><ul><li><span>Bloc과 builder의 기능을 제공하는 위젯이다. </span></li></ul><p>&nbsp;</p><blockquote><p><span>새로운 state에 반응하여 build를 처리해준다.</span></p><p><span>Streambuilder와 매우 유사하다.</span></p></blockquote><p>&nbsp;</p><p><img src="https://lh3.googleusercontent.com/0nl7iDlQkQB7u5SsIAYGMrAAVhuPsDHCrO4F1yZc5iXE5jGFXnrjSsz8mlALnJAnmY8d5-ObcNZ3BtBmu3wfbAZu6siz7__KTAGfO1WdwrI15I9pvBb9O0xxTH2nAYQZA_9Rh-sI" referrerpolicy="no-referrer" alt="img"></p><blockquote><p><span>[bloc: blocA] : parent BlocProvider와 curret BuildContext에 접근할 수 없는 single widget으로 사용하고 싶을 경우 지정해준다.</span></p><p><span>Bloc이 여러개 있는 경우 어떤 bloc을 쓸 것인지 지정하는 할을 한다.</span></p></blockquote><p>&nbsp;</p><p><img src="https://lh4.googleusercontent.com/xHM7sohIQydFAMQp-dH6Hj109c0qbH6hFQBSkmd03cu_cnE7ICsOe7gyrYf9ca1XRWeG4yUSL8n3cxkCH7JAbiaC6JKtRafwNnVYPamuzXuhpCVxTYfY7_ZDb28m_G_t1prFgUH9" referrerpolicy="no-referrer" alt="img"></p><blockquote><p><span>condition을 이용하면 더 세부적인 제어를 할 수 있다. </span></p><p><span>이전 bloc state와 현재 bloc state를 사용해 boolean을 리턴해서 true면 rebuild해준다.</span></p></blockquote><p>&nbsp;</p><p>&nbsp;</p><h4><a name="2-blocprovider" class="md-header-anchor"></a><span>2. BlocProvider</span></h4><ul><li><span>child에 bloc을 제공해주는 위젯이다.</span></li></ul><p>&nbsp;</p><blockquote><p><span>bloc의 단일 인스턴스가 서브 트리 내 여러 위젯에 제공될 수 있도록 Dependency Injection 위젯으로 사용된다.</span></p></blockquote><p>&nbsp;</p><p><img src="https://lh5.googleusercontent.com/J4PW6nLgaCv6HbgAa1zgPnE-iNGgaUKFo_UlVwkv1tAaHZd7MHRLyrkHHpr3auxYelDRPPRRssYOtrx1W7hmaBQqYfuUI-LUc2LUqbQSnkuSzoJsBIZ5UYMD1M4ULwSSAhnJClh-" referrerpolicy="no-referrer" alt="img"></p><blockquote><p><span>대부분의 경우에는 subtree에서 사용할 수 있는 새로운 bloc을 만들어야 한다. 그래서 이 경우에 creating bloc에 반응하여 자동으로 bloc을 closing 처리한다.</span></p></blockquote><p>&nbsp;</p><p><img src="https://lh5.googleusercontent.com/WyeGHLxSDThx5JmZAsVQB7JquvpI2G4xafYcEJpmGw-GXBWe9bRuoJ2r9P8Zrgr2D22KpS8PwTn39YQcmeSGdyPycB3z2qsUStFvBJNHz8INXXq1ZW1iNeaRZE_BWIwTifj6PTHf" referrerpolicy="no-referrer" alt="img"></p><blockquote><p><span>경우에 따라 widget tree의 새로운 부분에 기준 bloc을 제공할 수도 있다. 이는 기존 bloc을 새로운 route로 이용할 필요가 있을 때 가장 일반적으로 사용된다. 이 경우에 BlocProvider에서는 bloc을 만들지 않았기 때문에 closing 처리하지 않는다.</span></p></blockquote><p>&nbsp;</p><p><img src="https://lh3.googleusercontent.com/HXDIjVhPTvDW-FjSxKK5YtRWW3MyaXREyAzZB_uOUW7vQ6f6r3rJR2Qxef4_YQCAsxpxiOprRQJLk2EjQfnmDF5hbZTIrzpN8ZYc6z1tKtrRb40gugL6m9Il0BFDWUDKT1JVIYro" referrerpolicy="no-referrer" alt="img"></p><blockquote><p><span>위의 ChildA()와 ScreenA()에서 blocA를 위와같이 검색할 수 있다.</span></p></blockquote><p>&nbsp;</p><h4><a name="3-multiblocprovider" class="md-header-anchor"></a><span>3. MultiBlocProvider</span></h4><ul><li><span>여러 blocProvider를 하나로 결합한 위젯이다.</span></li></ul><p>&nbsp;</p><blockquote><p><span>가독성을 향상시키고 blocProvider를 중첩해서 선언할 필요성을 제거한다.</span></p></blockquote><hr /><p><img src="https://lh4.googleusercontent.com/YnsvISuFLTAEHd0KQKhNk4AM-qr4T74qBtki094a2f1yQznqk34ZLgGbsu5JrdPOKkNmy7XrT15a2fkcY-w1g-L3kBesHO3PDIg1Ez4E5VQ7zr_x57Q7Kcao8xp1cDpgYzs2M_jA" referrerpolicy="no-referrer" alt="img"></p><p><span>=&gt;</span></p><p><img src="https://lh5.googleusercontent.com/XzEvNKc2_dE2Bm2XXWqOYCf11MEB2EMdLZ7NMGg8zJHro6OxgmMNRXZF50lxRfvqPwiMpJKxyJeExO7SryooV7Axwy0vJ2sfwGJbB64IJ33DR7ka922HjtGUcIdvcxiDhDGxZYTj" referrerpolicy="no-referrer" alt="img"></p><hr /><p>&nbsp;</p><p>&nbsp;</p><h4><a name="4-bloclistener" class="md-header-anchor"></a><span>4. BlocListener</span></h4><ul><li><span>해당 Bloc의 state가 변경되었을 때 호출되는 위젯이다.</span></li></ul><p>&nbsp;</p><blockquote><p><span>navigation, snackbar 표시, dialog 표시 등 state 변경당 한 번 발생해야 하는 기능에 사용해야 한다.</span></p><p><span>(build하는 것이 아닌 다른 것들)</span></p></blockquote><hr /><p><img src="https://lh5.googleusercontent.com/NU2J6lLAkW5xlezA1_aAHnFNaYsuYkH6TWVeiNazBc5r1BSWYgOpogbJh1_apKXnc7HRdaUxYQnqvrXnHKUfXjgbzkbDJdmsL5pRCeKOwLkzX8nSGctftjYk5dnFjZX7bCgOEHUf" referrerpolicy="no-referrer" alt="img"></p><p><img src="https://lh3.googleusercontent.com/KQJgRjAQxm6OXh2kCmB61lLLkeQv8jZrvJUnf70sWP7t8vzEOTVqJaQwfzEomhsQ3YeNpKMRhnu2uUyU5eDnsd4PCQ5prxCSZUW3brr9EbwQGuXPQ0S_qT4FiH1odXQfHWd8BDrW" referrerpolicy="no-referrer" alt="img"></p><hr /><blockquote><p><span>BlocListener도 마찬가지로 condition에 따른 세부 조정이 가능하다.</span></p></blockquote><p>&nbsp;</p><p>&nbsp;</p><h4><a name="5-muiltibloclistener" class="md-header-anchor"></a><span>5. MuiltiBlocListener</span></h4><ul><li><span>여러 BlocListener 위젯을 하나로 결합한 위젯이다.</span></li></ul><p>&nbsp;</p><blockquote><p><span>가독성을 향상시키고 BlocListener를 중첩해서 선언할 필요성을 제거한다.</span></p></blockquote><hr /><p><img src="https://lh6.googleusercontent.com/YIiaVBKRiDS51DcrXe5uJoW-VTsy0mv9niyoL4MSd-T4g4pM5VRy47296mQfTTOQvsNHDudXi-7QsxT2wtaWTCOXkc_BZiqnpVGhkbsqAROmZwW-P9r6fVXwJiFbuAHO7f1EiUQ9" referrerpolicy="no-referrer" alt="img"></p><p><span>=&gt;</span></p><p><img src="https://lh5.googleusercontent.com/pNd9v66RGJxSrK_CPoEB9-I_y0fBpUYdOE1wamPV8Sw7GbSIGjzf0Qjg-XTpXGdpz7kfvgfVzycuooCBfSqCp3NoEYhw8zme6qMIJ81H8navz9sOijg1Z1S8VtS03ik_GkA1MCWA" referrerpolicy="no-referrer" alt="img"></p><hr /><p>&nbsp;</p><p>&nbsp;</p><h4><a name="6-repositoryprovider" class="md-header-anchor"></a><span>6. RepositoryProvider</span></h4><ul><li><span>child에게 repository를 제공하는 위젯이다.</span></li></ul><p>&nbsp;</p><blockquote><p><span>BlocProvider는 bloc을 제공하는데 사용되어야 하고, RepositoryProvider는 repository에만 사용해야 한다.</span></p></blockquote><hr /><p><img src="https://lh5.googleusercontent.com/d0HzwGyUd-atdeCKxWgHIlrghv-PurASFslGbT5EYcBUQoOErbWyofkz0pJdZICzCzONt014vW1RFb50xUetKuWeL1t1_8btpG9fmD6i7zrJ4Hdb2BJXzsv-vEcs4xGekuKnlke0" referrerpolicy="no-referrer" alt="img"></p><hr /><p>&nbsp;</p><p><img src="https://lh4.googleusercontent.com/jiqdBCg8IFt8NmrB-yHnBJpkRxjwf_T73cdEU_VsrLMbzdf0AnVWnPYpLFvwFmDqjFdQoqeTSyKozd2wjt19a1DCJ-as2MU742q2Fb7ePgrvaUDPypWVcdyTlK7JtoeRoHqDNYKo" referrerpolicy="no-referrer" alt="img"></p><blockquote><p><span>위의 방식으로 repository instance를 검색할 수 있다.</span></p></blockquote><p>&nbsp;</p><p>&nbsp;</p><h4><a name="7-multirepositoryprovider" class="md-header-anchor"></a><span>7. MultiRepositoryProvider</span></h4><ul><li><span>여러 RepositoryProvider위젯을 하나로 결합한 위젯이다.</span></li></ul><p>&nbsp;</p><blockquote><p><span>가독성을 향상시키고 RepositoryProvider를 중첩해서 선언할 필요성을 제거한다.</span></p></blockquote><hr /><p><img src="https://lh6.googleusercontent.com/ET6iDrfblKg9artwtVrzazMKtW9JMTs5oePf3cbwd6XDY1weEukBJ-DSyPp3UShnfhhjJOcC7udpM6qOgLSR5CkWAL_4oTSiNgVs3q2F7Gxs8ncPplrnjMD3JK3cq84HDMT8r1Pw" referrerpolicy="no-referrer" alt="img"></p><p><span>=&gt;</span></p><p><img src="https://lh4.googleusercontent.com/btn9UNytkhX7Z2gno2Sw9PtjzThRL7F4sEL_DBdpO5TjUQysaCfsz1KGZJV7ff5F2q9g6VcuQMX5iqeTUfm99K2XGDhH9oLAy0kAjElkTUh5vKGQk477h_wHRLCZnCWqc4LvR8w1" referrerpolicy="no-referrer" alt="img"></p><hr /><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><h2><a name="architecture--bloc의-작동방식" class="md-header-anchor"></a><span>Architecture- bloc의 작동방식</span></h2><p>&nbsp;</p><p><img src="https://lh3.googleusercontent.com/nEhRUoAeoZhDLKyZIAgvyVRubhWKBhYcrKBA4UyjRd06JcfdsRVY9RwmLKu2TQAOZDwjRa67On_f1Whqa4Qyrs-G_D4KkYPjBGO77MkdcN7mGrHE6Mmuu76CLKmdSGes0O7Gok7p" referrerpolicy="no-referrer" alt="img"></p><p>&nbsp;</p><h3><a name="bloc을-사용함으로써-애플리케이션을-세-가지-layer로-분리시킬-수-있다" class="md-header-anchor"></a><span>Bloc을 사용함으로써 애플리케이션을 세 가지 layer로 분리시킬 수 있다. </span></h3><ul><li><p><span>Backend</span></p><ul><li><span>일반적으로 알고있는 서버</span></li><li><span>클라이언트에서 요청하면 결과를 전송해주는 역할을 수행</span></li></ul></li><li><p><span>Business Logic Component(bloc)</span></p><ul><li><span>UI와 Backend 사이의 중간다리 역할을 수행</span></li></ul></li><li><p><span>Presentational Component</span></p><ul><li><span>사용자에게 보여지는 부분(UI)</span></li><li><span>Flutter widget들로 구성</span></li></ul></li></ul><p>&nbsp;</p><h3><a name="작동방식" class="md-header-anchor"></a><span>작동방식</span></h3><ol start='' ><li><span>UI 부분에서 event가 발생 -&gt; bloc으로 dispatch</span></li><li><span>event를 전달받은 bloc이 Backend에 data 요청</span></li><li><span>Backend에서 요청한 데이터를 bloc으로 전송</span></li><li><span>bloc에서 전달받은 데이터를 필요한 형태로 가공하여 state에 반영</span></li><li><span>update된 state를 화면에 보여짐</span></li></ol><p>&nbsp;</p><ul><li><span>일반적으로는 위와 같은 과정을 따라 상호작용하지만, 경우에 따라서는 bloc과 Backend의 상호작용 없이 state를 update 하는 경우도 있다.</span></li></ul><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><h2><a name="naming-conventions-권장사항" class="md-header-anchor"></a><span>Naming Conventions( 권장사항)</span></h2><p>&nbsp;</p><h3><a name="event-conventions" class="md-header-anchor"></a><span>Event Conventions</span></h3><ul><li><span>이벤트는 bloc의 관점에서 이미 발생한 것이므로 과거시제로 이름을 지정한다</span></li></ul><blockquote><p><span>BlocSubject + Noun(optional) + Verb (event)</span></p><p><span>Initial load event에서는 BlocSubject + Started</span></p></blockquote><p>&nbsp;</p><ul><li><span>Ex)</span></li></ul><p><img src="https://lh5.googleusercontent.com/xiABxUx69gJej-H5qfrouEWQh-XSimYjIMaww6AdfejnE096-_UwUwZjpZb_7IU49nQB_XgQ5sRnEFWGYe3Mua_qurw48DQIhBtq2GA6kBKhIJhBm0P-bYZ1w4sgw5mW-cMFNqPU" referrerpolicy="no-referrer" alt="img"></p><p>&nbsp;</p><h3><a name="state-conventions" class="md-header-anchor"></a><span>State Conventions</span></h3><ul><li><span>State는 특정 시점의 snapshot이므로 명사로 이름을 지정한다.</span></li></ul><blockquote><p><span>BlocSubject + Verb (action) + State</span></p></blockquote><p>&nbsp;</p><ul><li><span>Ex)</span></li></ul><p><img src="https://lh3.googleusercontent.com/DRIYrLb7ASf5176Q5YwrWdhmmteIuVV1TeccvL0hd6KqcfbO5wTeaiLUIsO-iDrHIMow4JFz80GX-2JvpUpq0tywOSZNtzD1iSBbTEVBtgdO7m8jCJVEIUraRE2oQjQ4E1hLM5KP" referrerpolicy="no-referrer" alt="img"></p><p>&nbsp;</p><p>&nbsp;</p><h2><a name="프로젝트-내-bloc의-구성" class="md-header-anchor"></a><span>프로젝트 내 Bloc의 구성</span></h2><hr /><p><img src="https://lh4.googleusercontent.com/i82XYTsb3ZAFGZ56x-uLeuuCMGFGSC6jmqm6y9661xAd5v7ixS0K8LSkF9nYEFHJLhQwRGPhuB8r5C647kGZd5VvsYQStHm-kyT10t6LlqTWeziUyY9LYBelZRpMomdjdZ1ZjYX3" referrerpolicy="no-referrer" alt="img"></p><hr /><blockquote><p><span>기본적으로 기존 프로젝트 구조에서 바뀌는 것은 없다.</span></p><p><span>각 bloc들을 저장할 blocs 폴더를 만들고, 그 안에 bloc별로 폴더를 만들어 저장한다. </span></p><p><span>각 bloc들의 폴더 안에는 event를 정의하는 event 파일, state를 정의하는 state 파일, event에 따라 데이터를 처리하고, state를 업데이트하는 bloc파일과 이 세 파일을 서 export하는 역할을 하는 bloc.dart파일이 있다.</span></p></blockquote><p>&nbsp;</p><p><img src="https://lh6.googleusercontent.com/NwV6d90_vcfnStINhkZIbbDf1p8NjlSb49iqS0IIGpYER7MOKrPm50mDZGzcgXdLBNVasBwh_VLVwYGCIHJtt3tKJmr5PJetjv0nUuPCg_wJn20n8escoMx1Mbik9d1UbdJd995L" referrerpolicy="no-referrer" alt="img"></p><blockquote><p><span>bloc.dart는 export만 하기 때문에 꼭 필요한 파일은 아니지만 세 파일을 한번에 import 할 수 있는 편의성을 위해 작성한다.</span></p></blockquote><p>&nbsp;</p><p>&nbsp;</p><h4><a name="-recipe와-튜토리얼들은-사이트에-잘-나와있으니-참고하도록-하고-recipe의-중요-포인트만-짚고-넘어가도록-하겠다" class="md-header-anchor"></a><span>* Recipe와 튜토리얼들은 사이트에 잘 나와있으니 참고하도록 하고 recipe의 중요 포인트만 짚고 넘어가도록 하겠다.</span></h4><p>&nbsp;</p><p>&nbsp;</p><h2><a name="several-recipes" class="md-header-anchor"></a><span>Several Recipes</span></h2><ul><li><span>Show Snackbar</span></li><li><span>Navigation</span></li><li><span>Bloc Access</span></li></ul><p>&nbsp;</p><p>&nbsp;</p><h3><a name="recipes-show-snackbar-with-bloclistener" class="md-header-anchor"></a><span>Recipes: Show SnackBar with BlocListener</span></h3><ul><li><span>이 recipe에서는 BlocListener bloc에서 state 변경이 있을 때 어떻게 BlocListener를 사용해 snackbar를 보여주는지에 대해 알려준다.</span></li></ul><p>&nbsp;</p><blockquote><p><span>BlocBuiler와 BlocListener의 차이를 명확하게 알 수 있는 recipe이다.</span></p><p><span>버튼을 눌러 state 변화를 주어 snackbar를 띄우는 기본적인 예제이다.</span></p></blockquote><p>&nbsp;</p><blockquote><p><span>BlocBuilder는 state 변화에 반응하여 “Widget”을 렌더링 하기 위해서 사용한다.</span></p><p><span>BlocListener는 state 변화에 반응하여 “어떠한 것”을 하기 위해서 사용한다.(위젯말고 다른게 필요할때)</span></p></blockquote><p>&nbsp;</p><p>&nbsp;</p><h3><a name="recipes-navigation" class="md-header-anchor"></a><span>Recipes: Navigation</span></h3><ul><li><span>이 recipe에서는 Blocbuilder와 BlocListener를 사용해 어떻게 navagation하는지 알려준다. </span></li><li><span>두 가지 접근 방법이 있다 : Direct Navigation, Route Navigation</span></li></ul><p>&nbsp;</p><h4><a name="direct-navigation" class="md-header-anchor"></a><span>Direct Navigation</span></h4><blockquote><p><span>BlocBuilder를 사용하는 방법이다.</span></p><p><span>state에 변경이 있으면 BlocBuilder에서 state에 맞는 페이지를 렌더링한다.</span></p></blockquote><p>&nbsp;</p><h4><a name="route-navigation" class="md-header-anchor"></a><span>Route Navigation</span></h4><blockquote><p><span>BlocListener를 사용하는 방법이다.</span></p><p><span>state에 변경이 있으면 Navigator.of(context).pushNamed(&#39;/pageB&#39;); Navigator로 새 경로를 push한다.</span></p></blockquote><p>&nbsp;</p><blockquote><p><span>페이지를 렌더링하는것과 경로를 push하는 것의 차이: </span></p><p><span>페이지가 navigator stack에 쌓이냐 쌓이지 않느냐의 차이이다.</span></p></blockquote><p>&nbsp;</p><p>&nbsp;</p><h3><a name="recipes-bloc-access" class="md-header-anchor"></a><span>Recipes: Bloc Access</span></h3><ul><li><span>이 recipe에서는 위젯 트리 전체에서 access 가능한 bloc을 만들기위해 BlocProvider를 사용하는 방법을 알려준다. </span></li><li><span>세 가지의 시나리오가 있다: Local Access, Route Access, Global Access</span></li></ul><p>&nbsp;</p><h4><a name="local-access" class="md-header-anchor"></a><span>Local Access</span></h4><ul><li><p><span>이 예제에서는 BlocProvider를 로컬 하위 트리에서 bloc을 사용할 수 있도록 하는데 사용한다. </span></p><p><span>여기서 로컬은 pushed/poped되는 경로가 없는 context 내의 로컬을 의미한다.</span></p></li></ul><p><img src="https://lh4.googleusercontent.com/ba1KjhxH-2HZxUSsQ3m95huO4d8xUpUI0bfIqwMTcYdd__GWPIZ5MH1512LgMaRKVWUxf3BYQPAOUOb8xsACp3IYywVs_kf2e62dXc8NlmsMEan-rPbUqeprlOVjnMqXsSxCbue6" referrerpolicy="no-referrer" alt="img"></p><p>&nbsp;</p><p>&nbsp;</p><h4><a name="route-access" class="md-header-anchor"></a><span>Route Access</span></h4><ul><li><span>이 예제에서는 BlocProvider를 여러 경로에 걸쳐 bloc에 access 하는데 사용한다. </span></li><li><span>새로운 경로가 push되면 이전에 참조되었던 bloc이 더이상 없는 다른 BuildContext를 갖게된다. </span></li><li><span>결과적으로, 새로운 경로를 별도의 BlocProvider로 감싸줄 필요가 있다.</span></li></ul><hr /><p><img src="https://lh3.googleusercontent.com/7vLlw4d39wSbvyEqx48AQVIs2TlP1NOVimlTC6SrpeFs7rWKJIlujlOeKyRmfWdOkgjTXOGR2pOSDX-sm1EtESK4yYouU6er9F534741JTYJUyTHxwmMx2JmfyZxj70QqbSGWUXR" referrerpolicy="no-referrer" alt="img"></p><p><span>=&gt;</span></p><p><img src="https://lh4.googleusercontent.com/pi-id93PU96qllEPuU1NKHSeAYSk3tfYk8kooO5F12vO_6Zd5DLsqd4OI61Az7AjIG_4qOVBble2vY_vrqVVLlGMMwr5jgKALKW6Yx2vryx6KM0GerG5qzs9b22kQxivM9VAGqKw" referrerpolicy="no-referrer" alt="img"></p><hr /><blockquote><p><span>위의 Local Access예제와 비슷하지만, Homepage에서 counterpage로 bloc instance를 넘겨주기 위해 BlocProvider.value 로 감싸주는것을 볼 수 있다.</span></p></blockquote><p>&nbsp;</p><p>&nbsp;</p><h4><a name="global-access" class="md-header-anchor"></a><span>Global Access</span></h4><ul><li><span>이 예제에서는 전체 위젯 트리에서 어떻게 bloc instance를 사용가능하게 하는지를 보여준다.</span></li></ul><p><img src="https://lh5.googleusercontent.com/pV_N3zhbNDQElB-eB6-v7GpMugW5iruai_tj-1SCthuBzZ6E3Kdz9lbf7eTVTgeBnRdDHZdzatEbPsdUDricF7JTsGpNnGnxDV4cfkHnzFPTqRkRa24weCTm4fkbApIKXOilWPfi" referrerpolicy="no-referrer" alt="img"></p><blockquote><p><span>MaterialApp을 BlocProvider로 감싸줘서 모든 위젯트리에서 bloc에 access 가능하게 한다.</span></p></blockquote><blockquote><p><span>BlocProvider.of</span><CounterBloc><span>(context);</span></p><p><span>이런 방식으로 access해주면 된다.</span></p></blockquote></div>
+</body>
+</html>
